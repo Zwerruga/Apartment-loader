@@ -32,6 +32,7 @@ function App() {
         ) : (
           state.map((a) => (
             <Card
+              key={a.id}
               title={a.attributes.title}
               rooms={a.attributes.rooms}
               address={Object.values(a.attributes.address).reduce(

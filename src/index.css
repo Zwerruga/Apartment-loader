@@ -15,5 +15,4 @@ body {
   width: 100%;
   min-height: calc(100vh - 290px);
   flex-wrap: wrap;
-  overflow-y: scroll;
 }
