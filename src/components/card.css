@@ -1,0 +1,48 @@
+.card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.title {
+  font-size: 2em;
+  font-weight: 700;
+  font-style: italic;
+  text-align: center;
+}
+.description {
+  width: 100%;
+  padding: 0 20px;
+}
+.description__row {
+  font-size: 1.5em;
+}
+.rooms {
+  color: #555;
+}
+.address {
+  color: #222;
+  font-weight: 600;
+}
+.description .material-icons {
+  padding: 5px;
+  color: #eee;
+  font-size: 2em;
+  cursor: pointer;
+  transition: transform 0.3s linear, box-shadow 0.1s;
+  user-select: none;
+  background-color: pink;
+  border-radius: 50%;
+  overflow: hidden;
+  justify-self: center;
+}
+.description .material-icons.active {
+  color: red;
+}
+.description .material-icons:hover {
+  transform: scale(1.1);
+}
+.description .material-icons:active,
+.description .material-icons:focus {
+  box-shadow: 0 0 10px red;
+}

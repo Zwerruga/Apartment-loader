@@ -1,6 +1,13 @@
 import React, { memo } from 'react'
+import './card.css'
 
-export default memo(function Card({ title = "", rooms = "", address = "", area="" }) {
+export default memo(function Card({
+    title = "",
+    rooms = "",
+    address = "",
+    area = "",
+    onLikeClick = () => { },
+    like = false }) {
     return (
         <div className="card">
             <p className="title">
@@ -16,6 +23,7 @@ export default memo(function Card({ title = "", rooms = "", address = "", area="
                 <div className="description__row area">
                     {area}
                 </div>
+                <i className={"material-icons".concat(like ? " active" : "")} onClick={onLikeClick}>favorite</i>
             </div>
         </div>
     )

@@ -7,32 +7,35 @@ const constants = {
   DISLIKE: "DISLIKE"
 };
 
-export const setAppartments = (apartments) => (dispatch) =>
+export const setApartments = (apartments) => (dispatch) =>
   dispatch({
     type: constants.SET_APARTMENTS,
     payload: apartments
   });
 
-export const likeAppartments = (apartmentsId) => (dispatch) =>
+export const likeApartments = (apartmentsId) => (dispatch) =>
   dispatch({
     type: constants.LIKE,
     payload: apartmentsId
   });
-export const dislikeAppartments = (apartmentsId) => (dispatch) =>
+export const dislikeApartments = (apartmentsId) => (dispatch) =>
   dispatch({
     type: constants.DISLIKE,
     payload: apartmentsId
   });
 
 const likes =
-  new Set(JSON.parse(localStorage.getItem("like appartments"))) || [];
+  new Set(JSON.parse(localStorage.getItem("like apartments"))) || [];
 const initialState = [];
 
 const Reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case constants.SET_APARTMENTS:
-      const payloadWithLikes = payload.map((a) => (a.like = likes[a.id]));
-      return [...state, ...payloadWithLikes];
+      const payloadWithLikes = payload.map((a) => {
+        a.like = likes.has(a.id);
+        return a;
+      });
+      return [...payloadWithLikes];
     case constants.LIKE:
       return state.map((a) => {
         if (a.id === payload) a.like = true;
@@ -51,9 +54,11 @@ const Reducer = (state = initialState, { type, payload }) => {
 export const store = createStore(Reducer, applyMiddleware(thunk));
 
 store.subscribe(() => {
-  const likes = store
-    .getState()
-    .filter((a) => a.like)
-    .map((a) => a.id);
-  localStorage.setItem("like appartments", likes);
+  const likes = JSON.stringify(
+    store
+      .getState()
+      .filter((a) => a.like)
+      .map((a) => a.id) || []
+  );
+  localStorage.setItem("like apartments", likes);
 });
