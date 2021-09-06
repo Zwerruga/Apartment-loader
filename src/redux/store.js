@@ -25,7 +25,7 @@ export const dislikeApartments = (apartmentsId) => (dispatch) =>
   });
 
 const likes =
-  new Set(JSON.parse(localStorage.getItem("like apartments"))) || [];
+  new Set(JSON.parse(localStorage.getItem("like apartments")) || []);
 const initialState = [];
 
 const Reducer = (state = initialState, { type, payload }) => {
