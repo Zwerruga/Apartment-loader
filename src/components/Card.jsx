@@ -7,7 +7,8 @@ export default memo(function Card({
     address = "",
     area = "",
     onLikeClick = () => { },
-    like = false }) {
+    like = false
+}) {
     return (
         <div className="card">
             <p className="title">
